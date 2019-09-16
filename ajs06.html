@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    <script>
+        function startTime() {
+            var today = new Date(); //获取日期和时间
+            var h = today.getHours(); //获取时
+            var m = today.getMinutes(); //获取分
+            var s = today.getSeconds();// 在小于10的数字前加一个‘0’ 获取秒
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML = h + ":" + m + ":" + s;
+            //每次递归调用后都重新获取（说明这个计时器存在精度问题！误差<500毫秒，250毫秒重新获取一次时间，人的肉眼就分辨不出来了
+            t = setTimeout(function () {
+                startTime()
+            }, 250);
+        }
+
+        //小于10的数之前补0
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+    </script>
+</head>
+<body onload="startTime()">
+
+<div id="txt"></div>
+
+</body>
+</html>
